@@ -1,20 +1,6 @@
-
 version: 2.1
 
 jobs:
-  deploy_infrastructure:
-    docker:
-      - image: amazon/aws-cli
-
-    steps:
-      - checkout
-      - run:
-          name: Configure Infrastructure Stack
-          command: |
-            aws cloudformation deploy \
-              --template-file template.yml \
-              --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
-              --region us-east-1
   # Exercise: Config and Deployment
   configure_infrastructure: 
     docker:
@@ -50,7 +36,4 @@ jobs:
 workflows:
   my_workflow:
     jobs:
-      - deploy_infrastructure
-      - configure_infrastructure:
-          requires:
-            - deploy_infrastructure
+      - configure_infrastructure
