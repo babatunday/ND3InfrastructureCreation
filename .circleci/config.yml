@@ -29,6 +29,14 @@ jobs:
           command: |
             apk add --update ansible
       - run:
+          name: touch inventory
+          command: |
+            touch inventory
+      - run:
+          name: Create Inventory file
+          command: |
+            echo [all] > inventory
+      - run:
           name: update inventory
           command: |
             aws ec2 describe-instances \
